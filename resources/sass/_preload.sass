@@ -1,0 +1,48 @@
+// Preload Styles - Seguindo regras do CONTRIBUTING.md
+.preload
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background-color: var(--surface-0)
+  display: flex
+  justify-content: center
+  align-items: center
+  z-index: 9999
+
+.preload-content
+  text-align: center
+
+.preload-message
+  color: var(--text-color)
+  font-size: 18px
+  margin-bottom: 20px
+  font-weight: 500
+
+.preload-bar
+  width: 300px
+  height: 6px
+  background-color: var(--surface-200)
+  border-radius: var(--border-radius)
+  overflow: hidden
+  position: relative
+
+  &:before
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    height: 100%
+    width: 50%
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-600) 100%)
+    border-radius: var(--border-radius)
+    animation: preload-slide 1.5s infinite ease-in-out
+
+@keyframes preload-slide
+  0%
+    transform: translateX(-100%)
+  50%
+    transform: translateX(100%)
+  100%
+    transform: translateX(300%)

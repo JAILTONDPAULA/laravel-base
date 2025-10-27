@@ -1,0 +1,135 @@
+// Login Glass Style - Seguindo regras do CONTRIBUTING.md
+.login-bg
+  position: fixed
+  top: 0
+  left: 0
+  width: 100vw
+  height: 100vh
+  z-index: 0
+  overflow: hidden
+  background: var(--surface-0)
+  display: flex
+  align-items: center
+  justify-content: center
+
+  .login-anim
+    position: absolute
+    border-radius: 50%
+    filter: blur(60px)
+    opacity: 0.5
+    animation: login-anim-move 8s infinite alternate ease-in-out
+
+    &:nth-child(1)
+      width: 400px
+      height: 400px
+      left: 10vw
+      top: 10vh
+      background: var(--primary-500)
+    &:nth-child(2)
+      width: 300px
+      height: 300px
+      right: 10vw
+      top: 30vh
+      background: var(--primary-600)
+    &:nth-child(3)
+      width: 250px
+      height: 250px
+      left: 40vw
+      bottom: 10vh
+      background: var(--primary-300)
+
+@keyframes login-anim-move
+  0%
+    transform: scale(1) translateY(0)
+  100%
+    transform: scale(1.1) translateY(30px)
+
+.login-glass
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translate(-50%, -50%)
+  z-index: 1
+  width: 350px
+  background: rgba(255,255,255,0.15)
+  border-radius: var(--border-radius)
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18)
+  backdrop-filter: blur(12px)
+  -webkit-backdrop-filter: blur(12px)
+  border: 1px solid rgba(255,255,255,0.18)
+  padding: 32px 28px 24px 28px
+  display: flex
+  flex-direction: column
+  align-items: center
+
+.login-title
+  margin-bottom: 24px
+  text-align: center
+
+.login-logo
+  width: 80px
+  height: 80px
+  margin-bottom: 8px
+  object-fit: contain
+  display: block
+
+.login-form
+  width: 100%
+  display: flex
+  flex-direction: column
+  gap: 18px
+  align-items: center
+
+.login-input
+  width: 100%
+  padding: 12px
+  border-radius: var(--border-radius)
+  border: 1px solid var(--surface-border)
+  background: rgba(255,255,255,0.5)
+  color: var(--text-color)
+  font-size: 16px
+  outline: none
+  transition: border-color 0.2s
+  &:focus
+    border-color: var(--primary-500)
+
+.login-password
+  position: relative
+  width: 100%
+  display: flex
+  align-items: center
+
+.login-view-toggle
+  position: absolute
+  right: 12px
+  top: 50%
+  transform: translateY(-50%)
+  background: none
+  border: none
+  cursor: pointer
+  font-size: 18px
+  color: var(--primary-500)
+  outline: none
+  z-index: 2
+
+.login-btn
+  width: 100%
+  padding: 12px
+  border-radius: var(--border-radius)
+  background: var(--primary-500)
+  color: var(--primary-color-text)
+  font-size: 16px
+  font-weight: 600
+  border: none
+  cursor: pointer
+  transition: background 0.2s
+  &:hover
+    background: var(--primary-600)
+
+.login-footer
+  width: 100%
+  text-align: center
+  margin-top: 18px
+  font-size: 14px
+  color: var(--text-color-secondary)
+  opacity: 0.8

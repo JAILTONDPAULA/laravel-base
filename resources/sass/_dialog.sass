@@ -1,0 +1,77 @@
+.containerdialog
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    backdrop-filter: blur(1px)
+    display: flex
+    align-items: center
+    justify-content: center
+    z-index: 9999
+    transition: all .3s ease-in-out
+    transform: translateX(-100%)
+    .dialog-form
+        background: #fff
+        border-radius: 4px
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1)
+        min-width: 400px
+        max-width: 750%
+        position: relative
+
+        .header
+            padding: 16px
+            border-bottom: 1px solid var(--surface-300)
+            font-size: 14px
+            font-weight: bold
+            margin-bottom: 10px
+            color: var(--text-color)
+            display: flex
+            justify-content: space-between
+            align-items: center
+
+            .title
+                font-weight: 400
+
+            .icon-close
+                background: var(--red-100)
+                color: #fff
+                border-radius: 6px
+                width: 24px
+                height: 24px
+                display: flex
+                align-items: center
+                justify-content: center
+
+                &:hover
+                    background: var(--red-500)
+                    cursor: pointer
+
+        .body
+            font-size: 14px
+            color: var(--p-text-color)
+            padding: 16px
+            background: var(--p-surface-100)
+
+        .footer
+            display: flex
+            justify-content: flex-end
+            gap: 10px
+            border-top: 1px solid var(--surface-300)
+            padding: 16px
+
+            button
+                padding: 8px 16px
+                border: none
+                border-radius: var(--border-radius)
+                cursor: pointer
+                font-size: 14px
+
+                &:last-child
+
+                    background: var(--primary-color)
+                    color: #fff
+
+                &:first-child
+                    background: var(--surface-300)
+                    color: var(--text-color)

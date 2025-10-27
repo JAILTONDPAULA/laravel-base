@@ -1,0 +1,262 @@
+.tabela
+    width: 100%
+    max-height: 420px
+    min-height: 177px
+    overflow-y: auto
+
+    .linha
+        width: fit-content
+        display: flex
+        border-bottom: 1px solid var(--p-surface-300)
+        transition: all .3s
+
+        &:not(.cabecalho):hover
+            background: var(--p-surface-200)
+
+        >*
+            width: 120px
+            flex: 1
+            margin: 2px
+            padding: 10px 2px
+            font-size: 11px
+            color: var(--p-surface-900)
+            display: flex
+            align-items: center
+            word-break: break-word
+            overflow-wrap: break-word
+
+            >svg.desc
+                transform: rotate(180deg)
+
+            &.link
+                text-decoration: none
+                font-weight: 900
+                color: var(--p-orange-500)
+                cursor: pointer
+                transition: all .4s
+                justify-content: center
+                &:hover
+                    background: var(--p-orange-500)
+                    color: #fff
+            // ! APAGAR APÓS REMOVER EM TODAS AS PÁGINAS ! //
+            &.tsearch
+                cursor: pointer
+                justify-content: space-between!important
+                position: relative
+                input
+                    width: 100%
+                    height: 100%
+                    outline: none
+                    border: 1px solid var(--p-surface-300)
+                    padding: 2px
+                    display: none
+
+            &.filtro
+                cursor: pointer
+                justify-content: space-between!important
+                position: relative
+
+                // ! REMOVER APÓS ATUALIZA EM TODAS AS PÁGINAS ! //
+                select
+                    width: 100%
+                    height: 100%
+                    background: #0000
+                    color: #0000
+                    border: none
+                    position: absolute
+                    top: 0
+                    left: 0
+                    outline: none
+                    cursor: pointer
+                    option
+                        color: var(--p-surface-800)
+            &.center
+                justify-content: center
+
+            &.select
+
+                select
+                    width: 100%
+                    border-radius: 16px
+                    font-size: 12px
+                    text-align: center
+                    white-space: break-spaces
+                    cursor: pointer
+                    outline: none
+
+        &.cabecalho
+            background: var(--p-surface-200)
+            position: sticky
+            top: 0
+            z-index: 2
+
+            >*
+                color: var(--p-serface-700)
+                font-weight: 600
+                display: flex
+                flex-wrap: wrap
+                justify-content: space-between
+
+                &.cl_filtro>svg    ,
+                &.cl_filtro>span   ,
+                &.cl_filtro>div>svg
+                    color: var(--p-surface-900)
+
+                span
+                    width: 100%
+
+                .boxfilter
+                    position: absolute
+                    background: #fff
+                    z-index: 3
+                    max-width: 300%
+                    padding: 0
+                    top: 0
+                    left: 0
+                    border: 1px solid var(--p-surface-200)
+                    overflow: hidden
+                    transition: all .3s
+                    height: 0
+
+                    .searchbox
+                        border: 1px solid var(--p-surface-300)
+                        width: 100%
+                        outline: none
+
+                    .listbox
+                        // display: flex
+                        // flex-direction: column
+                        gap: 1px
+                        background: var(--p-surface-400)
+                        max-height: 131px
+                        height: fit-content
+                        overflow: hidden
+                        overflow-y: auto
+
+                        label
+                            display: flex
+                            gap: 3px
+                            font-size: 12px
+                            color: var(--p-surface-900)
+                            cursor: pointer
+                            background: #fff
+                            padding: 4px 0
+                            white-space: nowrap
+                            transition: all .3s ease-in-out
+                            text-overflow: ellipsis
+                            overflow: hidden
+
+                            *
+                                cursor: pointer
+            >*
+                &:nth-last-child(1),
+                &:nth-last-child(2),
+                &:nth-last-child(3)
+                    .boxfilter
+                        left: auto
+                        right: 0
+
+section.paginacao
+    display: flex
+    justify-content: center
+    align-items: center
+    position: relative
+    gap: 3px
+    padding: 12px 0
+
+    button
+        width: 32px
+        height: 32px
+        border: none
+        border-radius: 50%
+        outline: none
+        font-weight: 600
+        cursor: pointer
+        transition: all .7s ease
+        user-select: none
+        background: var(--p-surface-200)
+
+        &.selected+.next,&.selected+.next+.last
+            opacity: .2
+            cursor: no-drop
+            pointer-events: none
+        &:hover
+            box-shadow: inset 0 0 0 32px #0002
+        &.selected
+            background: var(--p-orange-500)
+            border-color: var(--p-orange-500)
+    >span
+        position: absolute
+        left: 0
+        color: var(--p-surface-900)
+
+    >em
+        position: absolute
+        right: 0
+        background: var(--p-primary-color)
+        color: #fff
+        font-size: 12px
+        font-weight: 600
+        letter-spacing: 1.1px
+        padding: 4px
+        border-radius: 3px
+        cursor: pointer
+
+        &:hover
+            background: var(--p-primary-600)
+
+    .buttonactiontable
+        position: absolute
+        right: 0
+        display: flex
+        gap: 4px
+
+        section
+            background: var(--p-primary-color)
+            color: #fff
+            font-size: 12px
+            font-weight: 600
+            letter-spacing: 1.1px
+            padding: 4px
+            border-radius: 3px
+            cursor: pointer
+
+            &:hover
+                background: var(--p-primary-600)
+
+    #quantitypage
+        outline: none
+        border: 1px solid var(--p-surface-300)
+        border-radius: 8px
+        padding: 4px 8px
+        font-size: 12px
+        cursor: pointer
+        background: #fff
+        color: var(--p-surface-900)
+        appearance: none
+        -webkit-appearance: none
+        -moz-appearance: none
+        text-align: center
+        font-weight: 600
+        margin-left: 40px
+
+@media screen and ( max-width:768px )
+    section.paginacao
+        height: 90px
+        align-self: flex-end
+
+        button
+            align-self: end
+
+        >span
+            top: 12px
+            font-size: 14px
+
+        .buttonactiontable
+            top: 12px
+
+        #quantitypage
+            align-self: end
+            margin-left: 4px
+
+
