@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class AdUser extends Authenticatable
 {
     protected $table = 'tabela_users'; // ! trocar o nome da tabela
     protected $primaryKey = 'user_id'; // ! trocar o nome da chave primária
@@ -14,16 +14,6 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password', // ! caso seu campo senha não seja 'password', ajuste aqui
     ]; // ! trocar os nomes das colunas preenchíveis
-
-    protected $hidden = [
-        'password', // ! caso seu campo senha não seja 'password', ajuste aqui
-    ];
-
-    public function getAuthPassword()
-    {
-        return $this->password; // ! caso seu campo senha não seja 'password', ajuste aqui
-    }
 
 }
