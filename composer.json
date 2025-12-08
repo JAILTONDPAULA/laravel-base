@@ -2,8 +2,8 @@
     "$schema": "https://getcomposer.org/schema.json",
     "name": "jailtonpaula/laravel-base",
     "type": "project",
-    "description": "Template Laravel com SASS, jQuery e Gulp para desenvolvimento rápido.",
-    "keywords": ["laravel", "template", "sass", "jquery", "gulp", "base"],
+    "description": "Template Laravel otimizado com SASS, jQuery, Gulp e sistemas Toast/Dialog para desenvolvimento rápido.",
+    "keywords": ["laravel", "template", "sass", "jquery", "gulp", "base", "toast", "dialog", "oracle", "postgresql"],
     "license": "MIT",
     "authors": [
         {
@@ -67,9 +67,13 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
+            "@php -r \"echo 'Laravel Base Template instalado com sucesso!\\n';\"",
             "@php artisan key:generate --ansi",
+            "@php -r \"echo 'Instalando dependências npm...\\n';\"", 
             "npm install",
-            "npm run build"
+            "@php -r \"echo 'Compilando assets...\\n';\"",
+            "npm run build",
+            "@php -r \"echo 'Template pronto! Execute: php artisan serve\\n';\""
         ],
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
