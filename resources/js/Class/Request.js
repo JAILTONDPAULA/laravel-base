@@ -10,7 +10,7 @@ class Request {
                     location.href = '/login'
                 } else {
                     Preload.hide();
-                    Dialog.close('all', 'Erro na Requisição', xhr.responseText);
+                    Toast.error('Erro na Requisição: ' + xhr.responseText, true);
                 }
             },
             success(r,text,jqXHR) {

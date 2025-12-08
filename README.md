@@ -122,31 +122,278 @@ Após criar o projeto com `composer create-project jailtonpaula/laravel-base meu
    php artisan serve
    ```
 
+## 🛠️ Comandos Gulp
+
+O projeto inclui um sistema Gulp modular para compilação automática de assets:
+
+### **📁 Estrutura dos Gulpfiles:**
+- `gulpfile.js` - Arquivo principal que importa os módulos
+- `gulpfile.style.js` - Compilação de SASS para CSS
+- `gulpfile.script.js` - Compilação e minificação de JavaScript
+
+### **🎨 Comandos SASS (CSS):**
+
+```bash
+# Compilar SASS da aplicação principal
+gulp sass:app
+
+# Compilar SASS do login
+gulp sass:login
+
+# Watch mode - monitora mudanças e recompila automaticamente
+gulp sass:app:wt    # Watch apenas da aplicação
+gulp sass:login:wt  # Watch apenas do login
+gulp sass:all       # Watch de todos os arquivos SASS
+```
+
+### **⚙️ Comandos JavaScript:**
+
+```bash
+# Compilar e minificar JS da aplicação
+gulp js:app
+
+# Compilar e minificar JS do login
+gulp js:login
+
+# Watch mode - monitora mudanças e recompila automaticamente
+gulp js:app:w    # Watch apenas da aplicação
+gulp js:login:w  # Watch apenas do login
+gulp js:all      # Watch de todos os arquivos JS
+```
+
+### **🔄 Modo Desenvolvimento Completo:**
+
+```bash
+# Para monitorar e compilar automaticamente SASS e JS:
+gulp sass:all &
+gulp js:all
+
+# Ou executar individualmente conforme necessário
+```
+
+### **📝 O que cada tarefa faz:**
+
+**SASS:**
+- Compila arquivos `.sass` para `.css` minificado
+- Gera timestamp único para cache-busting (`v1234567890.min.css`)
+- Remove arquivos antigos automaticamente
+- Suporte a sourcemaps para debugging
+
+**JavaScript:**
+- Concatena múltiplos arquivos JS em um só
+- Minifica o código para produção
+- Gera timestamp único para cache-busting (`v1234567890.min.js`)
+- Remove arquivos antigos automaticamente
+
+## 📚 Sistemas Disponíveis
+
+### **🔔 Sistema de Toast**
+Sistema completo de notificações toast com 4 tipos visuais:
+
+```javascript
+// Notificação de sucesso
+Toast.success('Operação realizada com sucesso!');
+
+// Notificação de erro
+Toast.error('Erro ao processar operação!');
+
+// Notificação de aviso
+Toast.alert('Atenção: Verifique os dados!');
+
+// Notificação neutra/informativa
+Toast.neutral('Informação importante para o usuário');
+
+// Toast personalizado com duração fixa
+Toast.show('Mensagem customizada', 'custom', true); // fixo na tela
+```
+
+### **💬 Sistema de Dialog**
+Sistema de diálogos modais tipados com design moderno:
+
+```javascript
+// Dialog de sucesso
+Dialog.success('Sucesso!', 'Operação concluída com êxito');
+
+// Dialog de erro
+Dialog.error('Erro!', 'Falha na operação');
+
+// Dialog de alerta
+Dialog.alert('Atenção!', 'Verifique os dados antes de continuar');
+
+// Dialog genérico personalizado
+Dialog.show('Título', 'Conteúdo da mensagem', 'classe-css', 'Botão');
+```
+
+### **🎨 Sistema de Cores SASS**
+Variáveis centralizadas no arquivo `_main.sass`:
+
+```sass
+/* Cores Primárias */
+--color-primary-50: #eff6ff
+--color-primary-500: #3b82f6
+--color-primary-600: #2563eb
+
+/* Cores de Superfície */
+--color-surface-0: #ffffff
+--color-surface-50: #f8fafc
+--color-surface-900: #0f172a
+
+/* Cores Semânticas */
+--color-success: #059669
+--color-error: #dc2626
+--color-warning: #d97706
+--color-info: #0284c7
+```
+
 ## 📁 Estrutura SASS
 
 ```
 resources/sass/
-├── _main.sass      # Variáveis principais e cores
-├── _preload.sass   # Estilos do preloader
-├── _toast.sass     # Sistema de notificações
-└── login.sass      # Tela de login
+├── _main.sass      # Variáveis principais e sistema de cores
+├── _preload.sass   # Estilos do preloader customizado
+├── _toast.sass     # Sistema de notificações toast
+├── _dialog.sass    # Sistema de diálogos modais
+└── login.sass      # Tela de login com glass morphism
 ```
 
-## 🎨 Classes JavaScript
+## 🎨 Classes JavaScript Disponíveis
 
-- `Toast`: Sistema de notificações
-- `Preload`: Controle do carregamento
-- `FileVersionService`: Versionamento de assets
+- **`Toast`**: Sistema de notificações com tipos visuais
+- **`Dialog`**: Sistema de diálogos modais com variantes tipadas  
+- **`Preload`**: Controle do carregamento da aplicação
+- **`FileVersionService`**: Versionamento automático de assets
 
-## 📝 Uso dos Toasts
+## 🔧 Configurações Especiais
+
+### **Oracle Database**
+Configuração pronta no `config/database.php` para conexão Oracle:
+
+```php
+'oracle' => [
+    'driver' => 'oci8',
+    'tns' => env('DB_TNS', ''),
+    'host' => env('DB_HOST', 'localhost'),
+    'port' => env('DB_PORT', '1521'),
+    'database' => env('DB_DATABASE', 'xe'),
+    'service_name' => env('DB_SERVICE_NAME', ''),
+    'username' => env('DB_USERNAME', 'hr'),
+    'password' => env('DB_PASSWORD', ''),
+    'charset' => 'utf8',
+    'prefix' => env('DB_PREFIX', ''),
+    'prefix_schema' => env('DB_SCHEMA_PREFIX', ''),
+    'edition' => env('DB_EDITION', 'ora$base'),
+    'server_version' => env('DB_SERVER_VERSION', '11g'),
+],
+```
+
+### **PostgreSQL**
+Configuração pronta para PostgreSQL com otimizações:
+
+```php
+'pgsql' => [
+    'driver' => 'pgsql',
+    'url' => env('DATABASE_URL'),
+    'host' => env('DB_HOST', '127.0.0.1'),
+    'port' => env('DB_PORT', '5432'),
+    'database' => env('DB_DATABASE', 'laravel'),
+    'username' => env('DB_USERNAME', 'postgres'),
+    'password' => env('DB_PASSWORD', ''),
+    'charset' => 'utf8',
+    'prefix' => '',
+    'prefix_indexes' => true,
+    'search_path' => 'public',
+    'sslmode' => 'prefer',
+],
+```
+
+## 📝 Exemplos de Uso Completos
+
+### **🍞 Toast Notifications**
 
 ```javascript
-Toast.success('Operação realizada com sucesso!');
-Toast.error('Erro ao processar!', true); // fixo
-Toast.alert('Atenção necessária!');
-Toast.neutral('Informação geral');
+// Sucesso - cor verde
+Toast.success('Usuário cadastrado com sucesso!');
+
+// Erro - cor vermelha
+Toast.error('Falha ao conectar com o servidor!');
+
+// Alerta - cor amarela
+Toast.alert('Campos obrigatórios não preenchidos!');
+
+// Neutro - cor azul
+Toast.neutral('Dados salvos automaticamente');
+
+// Personalizado com duração fixa (não desaparece automaticamente)
+Toast.show('Mensagem importante', 'custom-class', true);
 ```
+
+### **📋 Modal Dialogs**
+
+```javascript
+// Sucesso com botão personalizado
+Dialog.success('Parabéns!', 'Conta criada com sucesso!', 'Continuar');
+
+// Erro com botão personalizado 
+Dialog.error('Ops!', 'Não foi possível processar o pagamento.', 'Tentar Novamente');
+
+// Alerta simples (apenas botão fechar)
+Dialog.alert('Atenção', 'Sua sessão expirará em 5 minutos.');
+
+// Dialog customizado com HTML
+Dialog.show(
+    'Confirmação', 
+    '<p>Deseja realmente <strong>excluir</strong> este item?</p><p class="text-danger">Esta ação não pode ser desfeita.</p>', 
+    'dialog-danger', 
+    'Excluir'
+);
+```
+
+## 🚀 Deploy e Produção
+
+### **Compilação para Produção**
+
+```bash
+# Compilar todos os assets para produção
+npm run assets
+
+# Ou individualmente
+gulp sass:app && gulp sass:login
+gulp js:app && gulp js:login
+```
+
+### **Versionamento Automático**
+O sistema gera automaticamente timestamps nos arquivos CSS e JS:
+- `public/css/app.v1234567890.min.css`
+- `public/js/app.v1234567890.min.js`
+
+Use no Blade com a classe `FileVersionService`:
+
+```php
+<!-- CSS -->
+<link rel="stylesheet" href="{{ FileVersionService::css('app') }}">
+<link rel="stylesheet" href="{{ FileVersionService::css('login') }}">
+
+<!-- JavaScript -->
+<script src="{{ FileVersionService::js('app') }}"></script>
+<script src="{{ FileVersionService::js('login') }}"></script>
+```
+
+## 🤝 Contribuição
+
+Este template foi desenvolvido para acelerar o desenvolvimento Laravel. Se encontrar bugs ou tiver sugestões de melhorias:
+
+1. **Issues**: Reporte problemas no repositório GitHub
+2. **Pull Requests**: Contribuições são bem-vindas
+3. **Documentação**: Ajude a melhorar esta documentação
+
+## 📄 Licença
+
+Este projeto está sob a [licença MIT](https://opensource.org/licenses/MIT), assim como o Laravel Framework.
 
 ---
 
-**Desenvolvido por Jailton Paula** para acelerar o desenvolvimento de projetos Laravel.
+**🎯 Template Laravel Base v1.0**  
+**Desenvolvido por Jailton Paula** para acelerar o desenvolvimento de projetos Laravel modernos.
+
+**📧 Contato**: [jailton@exemplo.com](mailto:jailton@exemplo.com)  
+**🌐 GitHub**: [github.com/jailtonpaula](https://github.com/jailtonpaula)
